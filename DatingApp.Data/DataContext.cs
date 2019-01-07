@@ -12,10 +12,12 @@ namespace DatingApp.Data
     {
         public DataContext(DbContextOptions options) : base(options) { }
 
+        public DbSet<Photo> Photos { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.AddConfiguration(new PhotoConfiguration());
             modelBuilder.AddConfiguration(new UserConfiguration());
         }
 

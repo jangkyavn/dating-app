@@ -14,6 +14,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
+using Swashbuckle.AspNetCore.Swagger;
 using System.Net;
 using System.Text;
 
@@ -47,10 +48,9 @@ namespace DatingApp.API
                 {
                     builder.AllowAnyMethod()
                         .AllowAnyHeader()
-                        .WithOrigins("http://localhost:4200")
-                        .AllowCredentials();
+                        .WithOrigins("http://localhost:4200");
                 }));
-
+            services.Configure<CloudinarySettings>(Configuration.GetSection("CloudinarySettings"));
             services.AddAutoMapper();
 
             services.AddTransient<Seed>();
@@ -69,6 +69,19 @@ namespace DatingApp.API
                         ValidateAudience = false
                     };
                 });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info
+                {
+                    Title = "Dating API",
+                    Version = "v1",
+                    Contact = new Contact
+                    {
+                        Name = "AnhBH",
+                        Email = "anhbh995@gmail.com"
+                    },
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -99,6 +112,12 @@ namespace DatingApp.API
             }
 
             seeder.SeedUsers();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dating API V1");
+            });
 
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();

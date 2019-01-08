@@ -10,6 +10,8 @@ namespace DatingApp.Application.Repositories
         void Delete<T>(T entity) where T : class;
         Task<IEnumerable<User>> GetUsers();
         Task<User> GetUser(int id);
+        Task<Photo> GetPhoto(int id);
+        Task<Photo> GetMainPhotoForUser(int userId);
         Task<bool> SaveAll();
     }
 }

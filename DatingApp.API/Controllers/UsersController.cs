@@ -2,7 +2,9 @@
 using DatingApp.API.Dtos;
 using DatingApp.Application.Repositories;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace DatingApp.API.Controllers
@@ -36,6 +38,25 @@ namespace DatingApp.API.Controllers
             var userToReturn = _mapper.Map<UserForDetailedDto>(user);
 
             return Ok(userToReturn);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, UserForUpdateDto userForUpdateDto)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var userForRespotiry = await _datingRepository.GetUser(id);
+            _mapper.Map(userForUpdateDto, userForRespotiry);
+
+            if (await _datingRepository.SaveAll())
+            {
+                return NoContent();
+            }
+
+            throw new Exception($"Cập nhật người dùng {id} bị lỗi");
         }
     }
 }

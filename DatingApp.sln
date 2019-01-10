@@ -5,9 +5,11 @@ VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingApp.API", "DatingApp.API\DatingApp.API.csproj", "{3640BB06-117F-4F3D-8EED-616AF12E72E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatingApp.Data", "DatingApp.Data\DatingApp.Data.csproj", "{011ECCCF-0D5A-4340-AEC2-99A891D52AF1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingApp.Data", "DatingApp.Data\DatingApp.Data.csproj", "{011ECCCF-0D5A-4340-AEC2-99A891D52AF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatingApp.Application", "DatingApp.Application\DatingApp.Application.csproj", "{70BF15B7-CB4F-4460-9704-B7E5EE66DAC4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DatingApp.Application", "DatingApp.Application\DatingApp.Application.csproj", "{70BF15B7-CB4F-4460-9704-B7E5EE66DAC4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatingApp.Utilities", "DatingApp.Utilities\DatingApp.Utilities.csproj", "{B4A08A57-9331-48C5-9241-A8FD0F567C28}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{70BF15B7-CB4F-4460-9704-B7E5EE66DAC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{70BF15B7-CB4F-4460-9704-B7E5EE66DAC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{70BF15B7-CB4F-4460-9704-B7E5EE66DAC4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B4A08A57-9331-48C5-9241-A8FD0F567C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B4A08A57-9331-48C5-9241-A8FD0F567C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B4A08A57-9331-48C5-9241-A8FD0F567C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B4A08A57-9331-48C5-9241-A8FD0F567C28}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

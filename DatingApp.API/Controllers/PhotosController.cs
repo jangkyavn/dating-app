@@ -3,7 +3,7 @@ using CloudinaryDotNet;
 using CloudinaryDotNet.Actions;
 using DatingApp.API.Dtos;
 using DatingApp.API.Helpers;
-using DatingApp.Application.Repositories;
+using DatingApp.Application.IRepositories;
 using DatingApp.Data.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;

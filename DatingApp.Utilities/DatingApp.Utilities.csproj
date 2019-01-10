@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DatingApp.Data\DatingApp.Data.csproj" />
-    <ProjectReference Include="..\DatingApp.Utilities\DatingApp.Utilities.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.0" />
   </ItemGroup>
 
 </Project>

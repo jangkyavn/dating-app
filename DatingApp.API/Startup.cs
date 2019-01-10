@@ -56,6 +56,7 @@ namespace DatingApp.API
             services.AddTransient<Seed>();
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IDatingRepository, DatingRepository>();
+            services.AddScoped<LogUserActivity>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
@@ -118,6 +119,15 @@ namespace DatingApp.API
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Dating API V1");
             });
+
+            app.Use(async (ctx, next) =>
+            {
+                await next();
+                if (ctx.Response.StatusCode == 204)
+                {
+                    ctx.Response.ContentLength = 0;
+                }
+            }); // Fix ERR_INVALID_HTTP_RESPONSE
 
             app.UseCors("CorsPolicy");
             app.UseHttpsRedirection();

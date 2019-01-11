@@ -12,11 +12,15 @@ namespace DatingApp.Data
     {
         public DataContext(DbContextOptions options) : base(options) { }
 
+        public DbSet<Like> Likes { get; set; }
+        public DbSet<Message> Messages { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.AddConfiguration(new LikeConfiguration());
+            modelBuilder.AddConfiguration(new MessageConfiguration());
             modelBuilder.AddConfiguration(new PhotoConfiguration());
             modelBuilder.AddConfiguration(new UserConfiguration());
         }

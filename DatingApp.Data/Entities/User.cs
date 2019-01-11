@@ -22,5 +22,9 @@ namespace DatingApp.Data.Entities
         public bool IsActive { get; set; }
 
         public virtual ICollection<Photo> Photos { get; set; }
+        public virtual ICollection<Like> Likers { get; set; }
+        public virtual ICollection<Like> Likees { get; set; }
+        public virtual ICollection<Message> MessagesSend { get; set; }
+        public virtual ICollection<Message> MessagesReceived { get; set; }
     }
 }

@@ -2,6 +2,7 @@
 using DatingApp.API.Dtos;
 using DatingApp.API.Helpers;
 using DatingApp.Application.IRepositories;
+using DatingApp.Data.Entities;
 using DatingApp.Utilities.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -73,6 +74,42 @@ namespace DatingApp.API.Controllers
             }
 
             throw new Exception($"Cập nhật người dùng {id} bị lỗi");
+        }
+
+        [HttpPost("{id}/like/{recipientId}")]
+        public async Task<IActionResult> LikeUser(int id, int recipientId)
+        {
+            if (id != int.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value))
+            {
+                return Unauthorized();
+            }
+
+            var like = await _datingRepository.GetLike(id, recipientId);
+
+            if (like != null)
+            {
+                return BadRequest("Bạn đã like người này rồi");
+            }
+
+            if (await _datingRepository.GetUser(recipientId) == null)
+            {
+                return NotFound();
+            }
+
+            like = new Like()
+            {
+                LikerId = id,
+                LikeeId = recipientId
+            };
+
+            _datingRepository.Add(like);
+
+            if (await _datingRepository.SaveAll())
+            {
+                return Ok();
+            }
+
+            return BadRequest("Lỗi khi thích");
         }
     }
 }
